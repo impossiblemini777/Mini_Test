@@ -1,0 +1,1744 @@
+{
+	"name":	"Replication_Definition",
+	"cmd.replication_definition":	{
+		"tasks":	[{
+				"task":	{
+					"name":	"db2_sample snowflake",
+					"source_name":	"Copy of db2_luw_qa-oldb01 1",
+					"target_names":	["null"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"Copy of db2_luw_qa-oldb01 1",
+						"database_name":	"Copy of db2_luw_qa-oldb01 1"
+					},
+					"source_tables":	{
+						"name":	"Copy of db2_luw_qa-oldb01 1",
+						"explicit_included_tables":	[{
+								"owner":	"QLIK",
+								"name":	"SEGMENT_INFO",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"QLIK",
+								"name":	"STOP_INFO",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"null",
+							"target_state":	"DISABLED",
+							"database_name":	"null"
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						},
+						"transaction_consistency_timeout":	6
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"48906378-48e6-d74e-850f-a02b4af0c720",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TRANSACTION_ID"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_SERVER_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"loggers":	{
+					"$type":	"RepTaskLoggers",
+					"loggers_configuration":	{
+					},
+					"SOURCE_CAPTURE":	"DETAILED_DEBUG",
+					"METADATA_MANAGER":	"DETAILED_DEBUG",
+					"DATA_RECORD":	"DETAILED_DEBUG"
+				}
+			}, {
+				"task":	{
+					"name":	"db2_snowflake",
+					"source_name":	"qa-oldb01_db2_luw",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"qa-oldb01_db2_luw",
+						"database_name":	"qa-oldb01_db2_luw"
+					},
+					"source_tables":	{
+						"name":	"qa-oldb01_db2_luw",
+						"explicit_included_tables":	[{
+								"owner":	"QLIK",
+								"name":	"SEGMENT_INFO",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"QLIK",
+								"name":	"STOP_INFO",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						},
+						"transaction_consistency_timeout":	6
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"table_suffix":	"__CT",
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"6ebd05f4-e8a1-8a47-9457-372eef90cb2d",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TIMESTAMP"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_SERVER_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_TRANSACTION_TYPE_CD",
+							"expression":	"'QR_TRANSACTION_TYPE_CD'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"$AR_H_OPERATION"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"loggers":	{
+					"$type":	"RepTaskLoggers",
+					"loggers_configuration":	{
+					},
+					"TARGET_LOAD":	"DETAILED_DEBUG",
+					"SOURCE_UNLOAD":	"DETAILED_DEBUG",
+					"SOURCE_CAPTURE":	"DETAILED_DEBUG",
+					"METADATA_MANAGER":	"INFO",
+					"DATA_RECORD":	"DETAILED_DEBUG"
+				}
+			}, {
+				"task":	{
+					"name":	"ifx_ol_cde_tms_ro_snowflake",
+					"source_name":	"ifx_ol_cde_tms_ro",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"ifx_ol_cde_tms_ro",
+						"database_name":	"ifx_ol_cde_tms_ro"
+					},
+					"source_tables":	{
+						"name":	"ifx_ol_cde_tms_ro",
+						"explicit_included_tables":	[{
+								"owner":	"informix",
+								"name":	"code",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"table_suffix":	"__CT",
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"be982b46-a88e-9a43-b572-ebe9a4eab40d",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"error_behavior":	{
+					"apply_error_behavior":	{
+						"insert_policy":	"ERROR_POLICY_MERGE_MODE",
+						"update_policy":	"ERROR_POLICY_IGNORE_RECORD"
+					},
+					"table_error_behavior":	{
+					},
+					"data_error_behavior":	{
+						"policy":	"ERROR_POLICY_SUSPEND_TABLE",
+						"truncation_policy":	"ERROR_POLICY_SUSPEND_TABLE"
+					},
+					"recoverable_error_behavior":	{
+					}
+				},
+				"loggers":	{
+					"$type":	"RepTaskLoggers",
+					"loggers_configuration":	{
+					},
+					"SOURCE_CAPTURE":	"DEBUG"
+				}
+			}, {
+				"task":	{
+					"name":	"ifx_ol_cde_tms_rw_snowflake",
+					"source_name":	"ifx_ol_cde_tms_rw",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"ifx_ol_cde_tms_rw",
+						"database_name":	"ifx_ol_cde_tms_rw"
+					},
+					"source_tables":	{
+						"name":	"ifx_ol_cde_tms_rw",
+						"explicit_included_tables":	[{
+								"owner":	"informix",
+								"name":	"code",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"tour_point",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"stakeholder",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"ledger",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"tour",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"activity",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"manipulations":	[{
+						"name":	"informix.activity",
+						"table_manipulation":	{
+							"owner":	"informix",
+							"name":	"activity",
+							"fl_passthru_filter":	"create_date >= '2020-10-01 00:00:00.000'",
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}, {
+						"name":	"informix.ledger",
+						"table_manipulation":	{
+							"owner":	"informix",
+							"name":	"ledger",
+							"fl_passthru_filter":	"create_date >= '2020-10-01 00:00:00'",
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}, {
+						"name":	"informix.tour",
+						"table_manipulation":	{
+							"owner":	"informix",
+							"name":	"tour",
+							"fl_passthru_filter":	"create_date >= '2020-10-01 00:00:00.000'",
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}, {
+						"name":	"informix.tour_point",
+						"table_manipulation":	{
+							"owner":	"informix",
+							"name":	"tour_point",
+							"fl_passthru_filter":	"create_date >= '2020-10-01 00:00:00.000'",
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}],
+				"task_settings":	{
+					"full_load_sub_tasks":	3,
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"table_suffix":	"__CT",
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"09472e7f-32a5-c048-8f18-845305ac29a6",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"RENAME_TABLE",
+							"name":	"table_name_upper",
+							"expression":	"upper($TABLE_NAME_VAR)",
+							"column":	{
+								"where_column_name":	"%"
+							},
+							"sub_action":	"CONVERT_UPPER"
+						}, {
+							"action":	"RENAME_COLUMN",
+							"name":	"column_name_upper",
+							"expression":	"upper($COLUMN_NAME_VAR)",
+							"column":	{
+								"where_column_name":	"%"
+							},
+							"sub_action":	"CONVERT_UPPER"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_TRANSACTION_TYPE_CD",
+							"expression":	"'QR_TRANSACTION_TYPE_CD'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"$AR_H_OPERATION"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TIMESTAMP"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_SERVER_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"loggers":	{
+					"$type":	"RepTaskLoggers",
+					"loggers_configuration":	{
+					}
+				},
+				"configurations":	[{
+						"name":	"informix.activity"
+					}, {
+						"name":	"informix.ledger"
+					}, {
+						"name":	"informix.tour"
+					}, {
+						"name":	"informix.tour_point"
+					}]
+			}, {
+				"task":	{
+					"name":	"informix_snowflake",
+					"source_name":	"ifx_hq-tms-rss01",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"ifx_hq-tms-rss01",
+						"database_name":	"ifx_hq-tms-rss01"
+					},
+					"source_tables":	{
+						"name":	"ifx_hq-tms-rss01",
+						"explicit_included_tables":	[{
+								"owner":	"informix",
+								"name":	"address",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"city_state_zip",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"code",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"cost_division_to_division",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"country",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"informix",
+								"name":	"curr_convert_rate",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"apply_changes_enabled":	false,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"bf8a3a91-1e75-3145-b70d-17e75de05b8e",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				}
+			}, {
+				"task":	{
+					"name":	"iseries_snowflake",
+					"source_name":	"dev1_db2i",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"dev1_db2i",
+						"database_name":	"dev1_db2i"
+					},
+					"source_tables":	{
+						"name":	"dev1_db2i",
+						"explicit_included_tables":	[{
+								"owner":	"WELIB",
+								"name":	"MMALTLD",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"WELIB",
+								"name":	"MMALTDL",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"WELIB",
+								"name":	"MMPRIM",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"WELIB",
+								"name":	"MMPRIMTRN",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"c8401cbb-c7c4-9e45-976e-db005ee34097",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_TYPE_CD",
+							"expression":	"'TRANSACTION_TYPE_CD'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"$AR_H_OPERATION"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TIMESTAMP"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_SERVER_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"loggers":	{
+					"$type":	"RepTaskLoggers",
+					"loggers_configuration":	{
+					},
+					"SOURCE_CAPTURE":	"INFO"
+				}
+			}, {
+				"task":	{
+					"name":	"iseries_snowflake_pk_test",
+					"source_name":	"dev1_db2i",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"dev1_db2i",
+						"database_name":	"dev1_db2i"
+					},
+					"source_tables":	{
+						"name":	"dev1_db2i",
+						"explicit_included_tables":	[{
+								"owner":	"WELIB",
+								"name":	"MMALTDL",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"WELIB",
+								"name":	"PLPSWPWP",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"WELIB",
+								"name":	"TACCCODP",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"WELIB",
+								"name":	"TSPTLSTS",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"manipulations":	[{
+						"name":	"WELIB.MMALTDL",
+						"table_manipulation":	{
+							"owner":	"WELIB",
+							"name":	"MMALTDL",
+							"new_table_name":	"MMALTDL_PK",
+							"new_owner_name":	"STAGING",
+							"transform_columns":	[{
+									"column_name":	"MDORD#",
+									"action":	"KEEP"
+								}, {
+									"column_name":	"MDSEG",
+									"action":	"KEEP"
+								}, {
+									"column_name":	"RRN",
+									"action":	"KEEP"
+								}],
+							"pk_manipulated":	{
+								"name":	"MMALTDL",
+								"segments":	[{
+										"name":	"MDORD#",
+										"position":	0
+									}, {
+										"name":	"MDSEG",
+										"position":	1,
+										"id":	1
+									}],
+								"pk_origin":	"primary_key_origin_source_unq_idx"
+							},
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}, {
+						"name":	"WELIB.TSPTLSTS",
+						"table_manipulation":	{
+							"owner":	"WELIB",
+							"name":	"TSPTLSTS",
+							"transform_columns":	[{
+									"column_name":	"",
+									"new_column_name":	"CHANGE_DT",
+									"action":	"ADD",
+									"new_data_type":	"kAR_DATA_TYPE_DATE",
+									"computation_expression":	"case when $TJCHDT = 0\nthen datetime('0001-01-01')\nElse\ndatetime(\nsubstr($TJCHDT ,1,4) || '-' || substr($TJCHDT,5,2) || '-' || substr($TJCHDT,7,2))\nend"
+								}, {
+									"column_name":	"",
+									"new_column_name":	"EFF_TM",
+									"action":	"ADD",
+									"new_data_type":	"kAR_DATA_TYPE_TIME",
+									"computation_expression":	"time(substr($TJEFTM ,1,2) || ':' || substr($TJEFTM,3,2) || ':' || substr($TJEFTM,5,2))"
+								}, {
+									"column_name":	"",
+									"new_column_name":	"EFF_TS",
+									"action":	"ADD",
+									"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+									"scale":	6,
+									"computation_expression":	"case when $TJEFDT = 0\nthen datetime('0001-01-01 00:00:00')\nElse\ndatetime(\nsubstr($TJEFDT ,1,4) || '-' || substr($TJEFDT,5,2) || '-' || substr($TJEFDT,7,2)|| ' '||\ncase when $TJEFTM = 0 then time('00:00:00')\nwhen length($TJEFTM) = 6 then time(substr($TJEFTM ,1,2) || ':' || substr($TJEFTM,3,2) || ':' || substr($TJEFTM,5,2))\nwhen length($TJEFTM) = 5 then time('0'||substr($TJEFTM ,1,1) || ':' || substr($TJEFTM,2,2) || ':' || substr($TJEFTM,4,2))\nwhen length($TJEFTM) = 4 then time('00:' || substr($TJEFTM,1,2) || ':' || substr($TJEFTM,3,2))\nwhen length($TJEFTM) = 3 then time('00:0' || substr($TJEFTM,1,1) || ':' || substr($TJEFTM,2,2))\nwhen length($TJEFTM) = 2 then time('00:00:' || $TJEFTM)\nwhen length($TJEFTM) = 1 then time('00:00:0' || $TJEFTM) end\n)\nend"
+								}],
+							"fl_passthru_filter":	"TJCHDT >= 20200820",
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"support_lobs":	false,
+						"change_table_settings":	{
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"75f9e1dd-95e9-434d-b5d3-9c4cc1725506",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_TYPE_CD",
+							"expression":	"'TRANSACTION_TYPE_CD'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"$AR_H_OPERATION"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TIMESTAMP"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_SERVER_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"error_behavior":	{
+					"apply_error_behavior":	{
+						"insert_policy":	"ERROR_POLICY_MERGE_MODE",
+						"update_policy":	"ERROR_POLICY_UPSERT_MODE"
+					},
+					"table_error_behavior":	{
+					},
+					"data_error_behavior":	{
+					},
+					"recoverable_error_behavior":	{
+					}
+				},
+				"loggers":	{
+					"$type":	"RepTaskLoggers",
+					"loggers_configuration":	{
+					},
+					"TARGET_APPLY":	"INFO",
+					"SOURCE_CAPTURE":	"INFO"
+				},
+				"configurations":	[{
+						"name":	"WELIB.MMALTDL"
+					}, {
+						"name":	"WELIB.TSPTLSTS"
+					}]
+			}, {
+				"task":	{
+					"name":	"schema_select",
+					"source_name":	"db2_luw_qa-oldb01",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"db2_luw_qa-oldb01",
+						"database_name":	"db2_luw_qa-oldb01"
+					},
+					"source_tables":	{
+						"name":	"db2_luw_qa-oldb01",
+						"included_pattern":	[{
+								"owner":	"CLG",
+								"name":	"%"
+							}],
+						"excluded_pattern":	[{
+								"owner":	"CLG",
+								"name":	"SCRIPT%",
+								"load_order":	-1
+							}, {
+								"owner":	"CLG",
+								"name":	"ZZ%",
+								"load_order":	-1
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"apply_changes_enabled":	false,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"55fabeaf-7fc4-6f4d-8f91-6958394b409f",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				}
+			}, {
+				"task":	{
+					"name":	"sql_svr_snowflake_prod_ods_db",
+					"source_name":	"sql_svr_hqv-qasqlbi03",
+					"target_names":	["snowflake_prod_ods_db"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"sql_svr_hqv-qasqlbi03",
+						"database_name":	"sql_svr_hqv-qasqlbi03"
+					},
+					"source_tables":	{
+						"name":	"sql_svr_hqv-qasqlbi03",
+						"explicit_included_tables":	[{
+								"owner":	"RT",
+								"name":	"SCPODORD",
+								"estimated_size":	48581,
+								"orig_db_id":	549733161,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"TSPTTRDT",
+								"estimated_size":	121278,
+								"orig_db_id":	1637737037,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"TSPTRCTR",
+								"estimated_size":	77197,
+								"orig_db_id":	226256011,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"TSPTTRHD",
+								"estimated_size":	5772,
+								"orig_db_id":	1669737151,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"TSPTRALR",
+								"estimated_size":	492611,
+								"orig_db_id":	178255840,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"TSPRCVTK",
+								"estimated_size":	470937,
+								"orig_db_id":	43303364,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"VMPPTORD",
+								"estimated_size":	1214878,
+								"orig_db_id":	1525736638,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"VMPPTORH",
+								"estimated_size":	439429,
+								"orig_db_id":	1541736695,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"APPPOHDR",
+								"estimated_size":	1362326,
+								"orig_db_id":	2030786442,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"CITY_ZIP1",
+								"estimated_size":	45484,
+								"orig_db_id":	1664881148,
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"RT",
+								"name":	"TSPTRCTR1",
+								"estimated_size":	77218,
+								"orig_db_id":	1872881889,
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"snowflake_prod_ods_db",
+							"target_state":	"DISABLED",
+							"database_name":	"snowflake_prod_ods_db"
+						}
+					}],
+				"manipulations":	[{
+						"name":	"RT.CITY_ZIP1",
+						"table_manipulation":	{
+							"owner":	"RT",
+							"name":	"CITY_ZIP1",
+							"transform_columns":	[{
+									"column_name":	"",
+									"new_column_name":	"POSTAL_CD",
+									"action":	"ADD",
+									"new_data_type":	"kAR_DATA_TYPE_STR",
+									"length":	20,
+									"computation_expression":	"$ZIP6_CD||'-'||$ZIP4_CD"
+								}, {
+									"column_name":	"",
+									"new_column_name":	"FULL_CITY_NM",
+									"action":	"ADD",
+									"new_data_type":	"kAR_DATA_TYPE_STR",
+									"length":	50,
+									"computation_expression":	"case when $COUNTY_CD == '' then $CITY_NM else\n\n$CITY_NM||$COUNTY_CD end"
+								}, {
+									"column_name":	"",
+									"new_column_name":	"COUNTRY_NM",
+									"action":	"ADD",
+									"new_data_type":	"kAR_DATA_TYPE_STR",
+									"length":	50,
+									"computation_expression":	"source_lookup(5,'RT','COUNTRY','COUNTRY_NM','COUNTRY_CD=?',$COUNTRY_CD)"
+								}],
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}, {
+						"name":	"RT.TSPTRCTR1",
+						"table_manipulation":	{
+							"owner":	"RT",
+							"name":	"TSPTRCTR1",
+							"transform_columns":	[{
+									"column_name":	"",
+									"new_column_name":	"TCLD_TM_FORMAT",
+									"action":	"ADD",
+									"new_data_type":	"kAR_DATA_TYPE_STR",
+									"length":	50,
+									"computation_expression":	"case when $TCLDTM = 0 then time('00:00:00')\nwhen length($TCLDTM) = 4 then time(substr($TCLDTM,1,2) || ':' || substr($TCLDTM,3,2) || ':00')\nwhen length($TCLDTM) = 3 then time('0' || substr($TCLDTM,1,1) || ':' || substr($TCLDTM,2,2) || ':00')\nwhen length($TCLDTM) = 2 then time('00:' || $TCLDTM || ':00')\nwhen length($TCLDTM) = 1 then time('00:0' || $TCLDTM || ':00') end"
+								}],
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"STAGING",
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						}
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"table_suffix":	"__CT",
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"bf7302d2-8229-094f-bb9f-0f0c1a16632a",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"ADD_COLUMN",
+							"name":	"QR_TRANSACTION_TYPE_CD",
+							"expression":	"'QR_TRANSACTION_TYPE_CD'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"$AR_H_OPERATION"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TIMESTAMP"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_SERVER_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"configurations":	[{
+						"name":	"RT.CITY_ZIP1"
+					}, {
+						"name":	"RT.TSPTRCTR1"
+					}]
+			}],
+		"databases":	[{
+				"name":	"Copy of db2_luw_qa-oldb01 1",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2LUW_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2luwSettings",
+					"username":	"qlikrep",
+					"password":	"{ZAEE34B13F2D6E95D9039B480CB3523CA225A3FBBB33FF4329}",
+					"databaseAlias":	"DBTMSQ",
+					"server":	"qa-oldb01.wernerds.net",
+					"port":	60018,
+					"databaseName":	"sample",
+					"connectMode":	"CONNECTION_STRING"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"db2_luw_qa-oldb01",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2LUW_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2luwSettings",
+					"username":	"qlikrep",
+					"password":	"{ZA0645944988F43E6CFE1DDCF30E4071F8A0B02F4491F4DB28}",
+					"databaseAlias":	"DBTMSQ",
+					"server":	"qa-oldb01.wernerds.net",
+					"port":	60018,
+					"databaseName":	"dbtmsq",
+					"connectMode":	"CONNECTION_STRING"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"db2i_dev1",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2I_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2iSettings",
+					"username":	"QLIKREP",
+					"password":	"{ZAA16159C98101E4DFFCD1AA8E68A6850E4427976BA5A328B995080BFA23F6C8F52F2A64D8814BC847}",
+					"server":	"dev1",
+					"connectMode":	"CONNECTION_STRING",
+					"JournalName":	"APPJRN",
+					"JournalLibrary":	"#MXJRN",
+					"SkipJournalValidation":	true
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"dev1_db2i",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2I_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2iSettings",
+					"username":	"QLIKREP",
+					"password":	"{ZA2C19E05D3E9EFBA69DB7AB3D799ED55ECEA3A2D1E026EA027FBDF755ED85749A1F9B92330D20EB29}",
+					"server":	"dev1",
+					"connectMode":	"CONNECTION_STRING",
+					"JournalName":	"APPJRN",
+					"JournalLibrary":	"#MXJRN"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"ifx_hq-tms-rss01",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"INFORMIX_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"InformixSettings",
+					"username":	"informix",
+					"password":	"{ZAA9837A8F9023A3460E64CF31616CF863CB39DA25AEF43368}",
+					"server":	"ol_tmsrss01",
+					"database":	"wlms                                                                                                                            "
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"ifx_ol_cde_tms_ro",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"INFORMIX_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"InformixSettings",
+					"username":	"informix",
+					"password":	"{ZAA075095DA3387D56752B1BAC618701949E958E228A888B2A}",
+					"server":	"ol_cde_tms_ro",
+					"database":	"wlms                                                                                                                            "
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"ifx_ol_cde_tms_rw",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"INFORMIX_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"InformixSettings",
+					"username":	"informix",
+					"password":	"{ZA47818840F7D1FB811A7C4E58D02E4D3CB7ABAF7A38E0682B}",
+					"server":	"ol_cde_tms_rw",
+					"database":	"wlms                                                                                                                            "
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"null",
+				"role":	"TARGET",
+				"is_licensed":	true,
+				"type_id":	"NULL_TARGET_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"NulltargetSettings"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"prod_ifx_ol_tmsdb01_wlms_rw",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"INFORMIX_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"InformixSettings",
+					"username":	"dwadmin",
+					"password":	"{ZA5A7349E8D61B88AA7B6AE9C106FC561356201F8E32D3BF97}",
+					"server":	"ol_tmsdb03",
+					"database":	"wlms                                                                                                                            "
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"prod_ifx_ol_tmsdb03_wlms_ro",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"INFORMIX_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"InformixSettings",
+					"username":	"dwadmin",
+					"server":	"ol_tmsdb03",
+					"database":	"wlms                                                                                                                            "
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"prod_iseries_prod1",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2I_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2iSettings",
+					"server":	"prod1",
+					"connectMode":	"CONNECTION_STRING",
+					"JournalName":	"APPJRN",
+					"JournalLibrary":	"#MXJRN",
+					"SkipJournalValidation":	true
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"qa-oldb01_db2_luw",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2LUW_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2luwSettings",
+					"username":	"qlikrep",
+					"password":	"{ZA441F3C768CA91A6C3D36EA3187D284D6F5158A147E46754E}",
+					"databaseAlias":	"DBTMSQ",
+					"server":	"qa-oldb01.wernerds.net",
+					"port":	60018,
+					"databaseName":	"dbtmsq",
+					"connectMode":	"CONNECTION_STRING"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"snowflake_prod_ods_db",
+				"role":	"TARGET",
+				"is_licensed":	true,
+				"type_id":	"SNOWFLAKE_AZURE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"SnowflakeazureSettings",
+					"username":	"ELTPRODUSER",
+					"password":	"{ZA5F1E17A8804CF753AF1E02C640C7396F7323F8DE9C08F801190B2FDB05126616FE26C7D56EC42B84}",
+					"server":	"werner.east-us-2.azure.snowflakecomputing.com",
+					"database":	"PROD_ODS_DB",
+					"warehouse":	"PROD_LOAD_WH",
+					"metadataschema":	"STAGING",
+					"blobstorageaccountname":	"adfedwbistoragedev",
+					"blobstorageaccountkey":	"{ZADD855A35A7E35FC5A8067C882A2A94C616EAFD3943A4F4C46E997B0C57E65A9CE74840B962D15D14CEAA847890F59AB71B7B5D7F3056D2C5110D44752D1A32B7ABC1F14318092F2FFC85AEDC0998E85AFF10A6A2A7FBD32029415257556ECAF6EEBC8E9ADEB3235D}",
+					"blobstoragecontainer":	"qlikstage",
+					"blobstoragefolder":	"informixstage",
+					"blobstoragesastoken":	"{ZADD855A353A211EE7E9AA9347F0B84BDD416A47095D303A3164876173FD6420B811E99F6596B6EFC9DC0484C417C7EFB287DE901E1BD6F5D1ACCC838D3276931FC2A219D848D464F83A0F46F080F70F54DA5C3658960683CCCC14780E8FB96BD2399AFBA68E78773397EABDFFCB6087E6F7D5A09E72D571205A6D3D49046B2DADC7840B64DF3A3D55B332AF55634CFEB590C48B1F08A79298217B425204F4D3C9A70AEA01E16FCC58}"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"sql_svr_hqv-qasqlbi03",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"SQL_SERVER_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"SqlserverSettings",
+					"username":	"appAttuneRep01",
+					"password":	"{ZA83E9DCCFBA79DC7E4BFF1DA6A19A3B4538BDA9AF735D5AEA28131F02124D3384169EE3F9BD44FF1D}",
+					"server":	"HQV-QASQLBI03,59778",
+					"database":	"EQUIPMENT_MAINTENANCE",
+					"useWindowsAuthentication":	false,
+					"safeguardPolicy":	"RELY_ON_SQL_SERVER_REPLICATION_AGENT"
+				},
+				"override_properties":	{
+				}
+			}],
+		"replication_environment":	{
+			"name":	"replication_environment",
+			"mail_settings":	{
+			},
+			"enable_auto_roll_over":	true,
+			"roll_over_max_age_days":	1,
+			"task_user_context":	{
+			},
+			"run_command_settings":	{
+			}
+		},
+		"notifications":	{
+			"notifications_list":	[{
+					"name":	"high_latency",
+					"on_condition":	"$LATENCY > 30",
+					"off_condition":	"$LATENCY < 20",
+					"audit_on_message":	"[{{SERVER_NAME}}\\{{NOTIFICATION_NAME}}]{{TASK_NAME}} replication task latency exceeds defined limits.\nCurrent latency is {{LATENCY}} seconds.",
+					"audit_off_message":	"[{{SERVER_NAME}}\\{{NOTIFICATION_NAME}}]{{TASK_NAME}} replication task latency returned to within defined limits.\nCurrent Latency is {{LATENCY}} seconds.",
+					"trigger_timeout":	0,
+					"delivery_methods":	[{
+							"type":	"MAIL",
+							"on_message":	"The latency for replication task {{TASK_NAME}} exceeds defined limits.\nThe current latency is {{LATENCY}} seconds.\n------------------------------------------------------------------\nThis is an automated message generated by Qlik Replicate server {{SERVER_NAME}} for notification {{NOTIFICATION_NAME}}.",
+							"off_message":	"The Latency for replication task {{TASK_NAME}} returned to within defined limits.\nThe current latency is {{LATENCY}} seconds.\n------------------------------------------------------------------\nThis is an automated message generated by Qlik Replicate server {{SERVER_NAME}} for notification {{NOTIFICATION_NAME}}.",
+							"on_subject":	"[{{SERVER_NAME}}\\{{NOTIFICATION_NAME}}]{{TASK_NAME}} high latency notification",
+							"off_subject":	"[{{SERVER_NAME}}\\{{NOTIFICATION_NAME}}] {{TASK_NAME}} latency back to normal"
+						}, {
+							"type":	"EVENT_VIEWER",
+							"on_message":	"[{{SERVER_NAME}}\\{{NOTIFICATION_NAME}}]{{TASK_NAME}} high latency notification\nThe latency for replication task {{TASK_NAME}} exceeds defined limits.\nThe current latency is {{LATENCY}} seconds.",
+							"off_message":	"[{{SERVER_NAME}}\\{{NOTIFICATION_NAME}}] {{TASK_NAME}} latency back to normal\nThe Latency for replication task {{TASK_NAME}} returned to within defined limits.\nThe current latency is {{LATENCY}} seconds.",
+							"on_subject":	""
+						}],
+					"ui_id":	"NOTIFICATION_UI_ID_LATENCY"
+				}]
+		},
+		"error_behavior":	{
+			"apply_error_behavior":	{
+			},
+			"table_error_behavior":	{
+			},
+			"data_error_behavior":	{
+			},
+			"recoverable_error_behavior":	{
+			}
+		},
+		"scheduler":	{
+		},
+		"disk_utilization_configuration":	{
+			"is_enabled":	true
+		},
+		"memory_utilization_configuration":	{
+			"is_enabled":	true
+		}
+	},
+	"_version":	{
+		"version":	"6.6.0.488",
+		"version_major":	6,
+		"version_minor":	6,
+		"version_revision":	488
+	},
+	"description":	"Host name: hqv-attunrep01.wernerds.net, Time: 2020-10-27 14:18:07.862066"
+}
