@@ -1,0 +1,257 @@
+{
+	"name":	"iseries_snow_disc_welib__2021-02-22--13-38-29-619424",
+	"cmd.replication_definition":	{
+		"tasks":	[{
+				"task":	{
+					"name":	"iseries_snow_disc_welib",
+					"description":	"Testing Tspsplit_admin table for soft deletes",
+					"source_name":	"src_dev_iseries_db2i",
+					"target_names":	["tgt_dev_disc_snow"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"src_dev_iseries_db2i",
+						"database_name":	"src_dev_iseries_db2i"
+					},
+					"source_tables":	{
+						"name":	"src_dev_iseries_db2i",
+						"explicit_included_tables":	[{
+								"owner":	"WELIB",
+								"name":	"TSPMASTR",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"tgt_dev_disc_snow",
+							"target_state":	"DISABLED",
+							"database_name":	"tgt_dev_disc_snow"
+						}
+					}],
+				"manipulations":	[{
+						"name":	"WELIB.TSPMASTR",
+						"table_manipulation":	{
+							"owner":	"WELIB",
+							"name":	"TSPMASTR",
+							"new_table_name":	"TSPMASTR_DUP",
+							"expression":	"$TPDLDT >= '2020-08-01'\nOR $TPDLDT = '0001-01-01'",
+							"new_owner_name":	"WELIB",
+							"transform_columns":	[{
+									"column_name":	"TRIPID",
+									"action":	"KEEP"
+								}, {
+									"column_name":	"MSSQID",
+									"action":	"KEEP"
+								}],
+							"pk_manipulated":	{
+								"name":	"TSPMASTR",
+								"segments":	[{
+										"name":	"TRIPID",
+										"position":	0
+									}],
+								"pk_origin":	"primary_key_origin_source_unq_idx"
+							},
+							"fl_passthru_filter":	"TPDLDT >= '2020-08-01'\nOR TPDLDT = '0001-01-01'\nAND 1=1) WITH UR -- #",
+							"source_table_settings":	{
+								"unload_segments":	{
+									"ranges":	{
+									},
+									"entry_names":	{
+									}
+								}
+							}
+						}
+					}],
+				"task_settings":	{
+					"full_load_sub_tasks":	1,
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"WELIB",
+						"handle_drop_ddl":	false,
+						"control_schema":	"QLIKREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						},
+						"artifacts_cleanup_enabled":	false
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"support_lobs":	false,
+						"change_table_settings":	{
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"batch_apply_memory_limit":	2000,
+						"batch_apply_timeout":	240,
+						"batch_apply_timeout_min":	180,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"4a15fd56-3072-ef4e-95ab-586236ce7908",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"suspended_tables_table_enabled":	true,
+						"history_table_settings":	{
+						},
+						"history_table_enabled":	true,
+						"history_timeslot":	60,
+						"exception_table_settings":	{
+						},
+						"exception_table_enabled":	false,
+						"recovery_table_settings":	{
+						},
+						"recovery_table_enabled":	true,
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						},
+						"batch_apply_use_parallel_bulk":	true
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"ADD_COLUMN",
+							"name":	"QR_TRANSACTION_TYPE_CD",
+							"expression":	"'QR_TRANSACTION_TYPE_CD'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"$AR_H_OPERATION"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TIMESTAMP"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_SERVER_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"RECORD_DELETE_FG",
+							"expression":	"'RECORD_DELETE_FG'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"ifnull(operation_indicator(\"Y\", \"N\", \"N\"),\"N\")"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"error_behavior":	{
+					"apply_error_behavior":	{
+						"insert_policy":	"ERROR_POLICY_MERGE_MODE",
+						"update_policy":	"ERROR_POLICY_IGNORE_RECORD"
+					},
+					"table_error_behavior":	{
+					},
+					"data_error_behavior":	{
+						"policy":	"ERROR_POLICY_SUSPEND_TABLE",
+						"truncation_policy":	"ERROR_POLICY_SUSPEND_TABLE"
+					},
+					"recoverable_error_behavior":	{
+						"count":	36
+					}
+				},
+				"configurations":	[{
+						"name":	"WELIB.TSPMASTR"
+					}]
+			}],
+		"databases":	[{
+				"name":	"src_dev_iseries_db2i",
+				"description":	"Source connection for development iseries",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2I_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2iSettings",
+					"username":	"QLIKREP",
+					"password":	"{ZA6DA6E2561DF34E56FADB591DD93DE09DC8A23D762B66C773C7DCEE45FFE0BF12D1B389E5FBB0B290}",
+					"server":	"dev1",
+					"connectMode":	"CONNECTION_STRING",
+					"JournalName":	"APPJRN",
+					"JournalLibrary":	"#MXJRN",
+					"SkipJournalValidation":	true
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"tgt_dev_disc_snow",
+				"description":	"Target connection for snowflake dev_discovery_db",
+				"role":	"TARGET",
+				"is_licensed":	true,
+				"type_id":	"SNOWFLAKE_AZURE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"SnowflakeazureSettings",
+					"username":	"repdevuser",
+					"password":	"{ZAE1C208A48CD9CC39F2F073BB9AF0CE80788CFE9CD28E5994}",
+					"server":	"werner.east-us-2.azure.snowflakecomputing.com",
+					"database":	"DEV_DISCOVERY_DB",
+					"warehouse":	"DEV_REPLICATE_WH",
+					"metadataschema":	"QLIKREP",
+					"stagingtype":	"SNOWFLAKE_STAGE"
+				},
+				"override_properties":	{
+				}
+			}]
+	},
+	"_version":	{
+		"version":	"7.0.0.213",
+		"version_major":	7,
+		"version_revision":	213
+	},
+	"description":	"Host name: hqv-attunrep01.wernerds.net, Time: 2021-02-22 13:38:29.619424"
+}
