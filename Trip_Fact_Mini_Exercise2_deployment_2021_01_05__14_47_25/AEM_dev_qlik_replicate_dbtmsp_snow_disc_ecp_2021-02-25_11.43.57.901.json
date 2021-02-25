@@ -1,0 +1,252 @@
+{
+	"name":	"dbtmsp_snow_disc_ecp__2021-02-25--10-44-35-388678",
+	"cmd.replication_definition":	{
+		"tasks":	[{
+				"task":	{
+					"name":	"dbtmsp_snow_disc_ecp",
+					"description":	"This task gets data from DBTMSP ECP tables and do full load and Change data Capture into Snowflake DISCOVERY_DB ECP tables.",
+					"source_name":	"src_prd_services_db2l",
+					"target_names":	["tgt_dev_disc_snow"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"src_prd_services_db2l",
+						"database_name":	"src_prd_services_db2l"
+					},
+					"source_tables":	{
+						"name":	"src_prd_services_db2l",
+						"explicit_included_tables":	[{
+								"owner":	"ECP",
+								"name":	"RMIS_FILE_LOG",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"NON_CERTIFIED_REASON",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"CARRIER_CAPACITY",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"CARRIER_EQUIPMENT_COUNT",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"CARRIER_FINGER_PRINT",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"CONTACT",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"COVERAGE_LIMIT",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"VASDW_CARRIER_LANE_SUMMARY",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"VASDW_SHIPMENT_HISTORY_EXPENSE",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"VASDW_SHIPMENT_HISTORY_REVENUE",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"VASDW_SHIPMENT_HISTORY_TOUR",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"LANE_PREFERENCE",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"COVERAGE",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"OUT_OF_NETWORK_CARRIER",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"ECP",
+								"name":	"LOCATION",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"tgt_dev_disc_snow",
+							"target_state":	"DISABLED",
+							"database_name":	"tgt_dev_disc_snow"
+						}
+					}],
+				"task_settings":	{
+					"full_load_sub_tasks":	1,
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"ECP",
+						"control_schema":	"QLIREP",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						},
+						"artifacts_cleanup_enabled":	false
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"b93f9003-c0f7-3f45-be49-1a16ee759b58",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"exception_table_enabled":	false,
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						},
+						"batch_apply_use_parallel_bulk":	true
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"ADD_COLUMN",
+							"name":	"QR_TRANSACTION_TYPE_CD",
+							"expression":	"'QR_TRANSACTION_TYPE_CD'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"$AR_H_OPERATION"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"TRANSACTION_CST_TS",
+							"expression":	"'TRANSACTION_CST_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_TIMESTAMP",
+								"new_length":	0,
+								"new_precision":	0,
+								"new_scale":	6,
+								"computation_expression":	"$AR_H_TIMESTAMP"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}, {
+							"action":	"ADD_COLUMN",
+							"name":	"QR_TIMESTAMP_UTC_TS",
+							"expression":	"'QR_SERVER_UTC_TS'",
+							"column":	{
+								"where_column_name":	"-- new column --",
+								"new_data_type":	"kAR_DATA_TYPE_STR",
+								"new_length":	50,
+								"new_precision":	0,
+								"new_scale":	0,
+								"computation_expression":	"datetime()"
+							},
+							"sub_action":	"RENAME_EXPRESSION"
+						}]
+				},
+				"error_behavior":	{
+					"apply_error_behavior":	{
+						"insert_policy":	"ERROR_POLICY_MERGE_MODE",
+						"update_policy":	"ERROR_POLICY_IGNORE_RECORD"
+					},
+					"table_error_behavior":	{
+					},
+					"data_error_behavior":	{
+						"policy":	"ERROR_POLICY_SUSPEND_TABLE",
+						"truncation_policy":	"ERROR_POLICY_SUSPEND_TABLE"
+					},
+					"recoverable_error_behavior":	{
+					}
+				}
+			}],
+		"databases":	[{
+				"name":	"src_prd_services_db2l",
+				"description":	"Ecp production data source",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"DB2LUW_NATIVE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"Db2luwSettings",
+					"username":	"qlikrep",
+					"password":	"{ZAD4F314AAF84133E07D295BC5E9E55C6F8323A4693247DD91}",
+					"databaseAlias":	"DBTMSP",
+					"server":	"oldb1.wernerds.net",
+					"port":	60018,
+					"databaseName":	"dbtmsp",
+					"connectMode":	"CONNECTION_STRING"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"tgt_dev_disc_snow",
+				"description":	"Target connection for snowflake dev_discovery_db",
+				"role":	"TARGET",
+				"is_licensed":	true,
+				"type_id":	"SNOWFLAKE_AZURE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"SnowflakeazureSettings",
+					"username":	"repdevuser",
+					"password":	"{ZAE1C208A48CD9CC39F2F073BB9AF0CE80788CFE9CD28E5994}",
+					"server":	"werner.east-us-2.azure.snowflakecomputing.com",
+					"database":	"DEV_DISCOVERY_DB",
+					"warehouse":	"DEV_REPLICATE_WH",
+					"metadataschema":	"QLIKREP",
+					"stagingtype":	"SNOWFLAKE_STAGE"
+				},
+				"override_properties":	{
+				}
+			}]
+	},
+	"_version":	{
+		"version":	"7.0.0.213",
+		"version_major":	7,
+		"version_revision":	213
+	},
+	"description":	"Host name: hqv-attunrep01.wernerds.net, Time: 2021-02-25 10:44:35.388678"
+}
