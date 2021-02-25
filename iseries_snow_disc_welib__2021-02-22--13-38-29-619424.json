@@ -3,7 +3,7 @@
 	"cmd.replication_definition":	{
 		"tasks":	[{
 				"task":	{
-					"name":	"iseries_snow_disc_welib",
+					"name":	"iseries_snow_disc_welib_MIni",
 					"description":	"Testing Tspsplit_admin table for soft deletes",
 					"source_name":	"src_dev_iseries_db2i",
 					"target_names":	["tgt_dev_disc_snow"]
