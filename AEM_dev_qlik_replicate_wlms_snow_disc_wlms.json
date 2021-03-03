@@ -86,7 +86,7 @@
             "table_manipulation": {
               "owner": "informix",
               "name": "activity",
-              "expression": "$create_date >= '2018-01-01 00:00:00.000'",
+              "expression": "$create_date >= '2018-01-01 05:07:09.000'",
               "transform_columns": [
                 {
                   "column_name": "id",
