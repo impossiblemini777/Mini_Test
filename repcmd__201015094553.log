@@ -1,0 +1,2 @@
+00007860: 2020-10-15T09:45:50 [AT_GLOBAL       ]I:  service Log (V6.6.0.426 hqv-attunrep01.wernerds.net Microsoft Windows Server 2012  (build 9200) 64-bit, PID: 7852) started at Thu Oct 15 09:45:50 2020  (at_logger.c:2625)
+00007860: 2020-10-15T09:45:50 [AT_GLOBAL       ]I:  Closing log file at Thu Oct 15 09:45:50 2020  (at_logger.c:2473)
